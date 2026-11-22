@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("./../data/citynet_churn.csv")
+df = pd.read_csv("data/citynet_churn.csv")
 print("SHAPE OF THE DATAFRAME:", df.shape) # prints the shape of the dataframe (rows, columns)
 
 

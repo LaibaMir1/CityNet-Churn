@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 NUM = ["monthly_bill", "tenure_months", "support_calls_90d", "outage_hours_90d", "age"]
 CAT = ["region", "plan", "tv_bundle", "payment_method", "auto_pay", "paid_late_last_bill"]
 def load_split():
-    df = pd.read_csv("./../data/citynet_churn.csv")
+    df = pd.read_csv("data/citynet_churn.csv")
     X = df[NUM + CAT]
     y = df["churned"]
     X_train, X_rest, y_train, y_rest = train_test_split(
