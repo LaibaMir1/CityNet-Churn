@@ -14,3 +14,13 @@ print(churners.groupby("caught")[["tenure_months", "outage_hours_90d"]].mean().r
 print(churners.groupby("region")["caught"].mean().round(2).to_dict())
 print("TEST PR-AUC, run once at the end:",
       round(average_precision_score(y_test, pipe.predict_proba(X_test)[:, 1]), 3))
+
+
+
+# Lab 6 findings (validation set, then test once):
+# - Most important columns: tenure_months (0.13), auto_pay (0.044),
+#   support_calls_90d (0.043), paid_late_last_bill (0.026).
+# - Who we miss: quiet long-time customers. Missed churners average 43.2 months
+#   of tenure vs 18.9 months for the churners we catch.
+# - Fairness: only 50% of East-region churners are caught vs 68-76% elsewhere.
+# - TEST PR-AUC (run once, never tune after this): 0.361 vs baseline 0.179.
