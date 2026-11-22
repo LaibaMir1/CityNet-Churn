@@ -27,8 +27,11 @@ print("churn by cancel_request_logged:",
 #first one gives churn rate of each column value, second one gives churn rate of each column value for cancel_request_logged
 
 # TODO 1: Which column is missing values, and how many?
-#------------payment_method 149 and age 411
+#------------age 411 and payment_method 149
 # TODO 2: What share of customers churned? Is the data balanced?
-#------------0.2 churned, 0.8 not churned, so not balanced
+#------------17.9% churned, 82.1% stayed, so it is NOT balanced. Accuracy is misleading
+#             (saying "nobody leaves" is 82% accurate), so we use PR-AUC and top-100 hits.
 # TODO 3: One column predicts churn almost perfectly. Which one, and why must we NOT use it?
-#------------cancel_request_logged and support calls, because it is a direct indicator of churn
+#------------cancel_request_logged (95.8% churn when 1 vs 3.3% when 0). It is recorded AFTER
+#             the customer decides to leave (leakage) and new customers do not have it.
+#             Support calls is a real warning sign, measured before the decision, so we keep it.
